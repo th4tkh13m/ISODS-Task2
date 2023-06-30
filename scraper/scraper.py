@@ -1,4 +1,5 @@
 import requests
+from urllib.parse import quote
 from PIL import Image
 from io import BytesIO
 from .config import AI_URL, TRUE_URL, NUM_IMAGES, WAIT_TIME
@@ -24,7 +25,7 @@ class Scraper():
         )
 
     def fetch_ai_images(self, query, num_images=NUM_IMAGES):
-        self.driver.get(AI_URL.format(q=query))
+        self.driver.get(AI_URL.format(q=quote(query)))
         self.ai_imgs = []
         i = 0
         while True:
@@ -42,7 +43,7 @@ class Scraper():
                         return
                     
     def fetch_true_images(self, query, num_images=NUM_IMAGES):
-        self.driver.get(TRUE_URL.format(q=query))
+        self.driver.get(TRUE_URL.format(q=quote(query)))
         self.true_imgs = []
         i = 0
         while True:
